@@ -1,0 +1,27 @@
+Resources:
+  GetSSMParamsPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      Description: "Policy for getting ssm params"
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Action:
+          - ssm:GetParameters
+          Effect: Allow
+          Resource: '*'
+
+  CloudFormationRole:
+    DependsOn:
+    - GetSSMParamsPolicy
+    Properties:
+      ManagedPolicyArns:
+      - Ref: GetSSMParamsPolicy
+
+Outputs:
+  GetSSMParamsPolicy:
+    Description: SSM Params Policy
+    Value:
+      Ref: GetSSMParamsPolicy
+    Export:
+      Name: GetSSMParamsPolicy

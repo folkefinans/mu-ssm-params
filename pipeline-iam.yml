@@ -1,0 +1,5 @@
+Resources:
+  CodeBuildCIRole:
+    Properties:
+      ManagedPolicyArns:
+        - Fn::ImportValue: GetSSMParamsPolicy
